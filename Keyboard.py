@@ -24,6 +24,8 @@ class Keyboard:
                 self.y = -self.change
             if event.key == game.K_DOWN:
                 self.y = self.change
+            if event.key == game.K_SPACE:
+                self.player.fire()
 
         if event.type == game.KEYUP:
             self.x = 0

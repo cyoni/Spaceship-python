@@ -1,10 +1,11 @@
-import pygame as game
+
+
+from ObjectThatFires import ObjectThatFires
 from Point2D import Point2D
-from gameobject import GameObject
 
 
-class Player(GameObject):
+class Player(ObjectThatFires):
 
-    def __init__(self, screen):
-        super().__init__(screen, Point2D(370, 400), game.image.load('player.png'))
+    def __init__(self, gameBoard):
+        ObjectThatFires.__init__(self, gameBoard, Point2D(370, 400), 'player.png')
 

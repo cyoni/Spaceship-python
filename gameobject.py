@@ -1,12 +1,11 @@
-from Point2D import Point2D
+import pygame as game
 
 
 class GameObject:
 
-    def __init__(self, screen, position, picture):
+    def __init__(self, position, picture):
         self.position = position
-        self.picture = picture
-        self.screen = screen
+        self.picture = game.image.load(picture)
 
     def get_position(self):
         return self.position
