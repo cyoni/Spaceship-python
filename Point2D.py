@@ -16,6 +16,6 @@ class Point2D:
     def sety(self, y):
         self.y = y
 
-    def printpoint(self):
+    def print(self):
         print("[", self.x, ",", self.y, "]")
 
