@@ -10,5 +10,5 @@ class Monster(ObjectThatFires):
 
     def pick_picture(self):
         num = randrange(1, 3, 1)
-        return "monster" + str(num) + ".png"
+        return "images/monster" + str(num) + ".png"
 

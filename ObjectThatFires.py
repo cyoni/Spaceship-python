@@ -12,7 +12,7 @@ class ObjectThatFires(GameObject):
         self.gameBoard = game_board
         self.movement_velocity = fire_velocity
         self.firing_object = firing_object
-        self.imgBullet = game.image.load('bullet.png')
+        self.imgBullet = game.image.load('images/bullet.png')
 
     def fire(self, where):  # up or down
         object_position = self.firing_object.get_position()

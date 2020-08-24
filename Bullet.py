@@ -5,7 +5,7 @@ from gameobject import GameObject
 class Bullet(GameObject):
 
     def __init__(self, position, vector):
-        super().__init__(position, 'bullet.png')
+        super().__init__(position, 'images/bullet.png')
         self.position = position
         self.velocity = 5
         self.vector = vector

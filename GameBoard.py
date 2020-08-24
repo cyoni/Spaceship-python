@@ -40,13 +40,19 @@ class GameBoard:
 
     def determine_level(self):
         if self.player_score < 3:
-            self.monsters_manager.total_monsters = 2
-        elif self.player_score < 5:
-            self.monsters_manager.total_monsters = 4
+            self.monsters_manager.total_monsters = 1
         elif self.player_score < 10:
+            self.monsters_manager.total_monsters = 2
+        elif self.player_score < 30:
+            self.monsters_manager.total_monsters = 4
+        elif self.player_score < 60:
             self.monsters_manager.total_monsters = 6
-        elif self.player_score < 20:
+        elif self.player_score < 90:
             self.monsters_manager.total_monsters = 10
+        elif self.player_score < 120:
+            self.monsters_manager.total_monsters = 20
+        elif self.player_score < 150:
+            self.monsters_manager.total_monsters = 30
 
     def increase_score(self):
         self.player_score = self.player_score + 1

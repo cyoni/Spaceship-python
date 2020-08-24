@@ -7,13 +7,15 @@ game.init()
 screen = game.display.set_mode((Screen.SCREEN_WIDTH, Screen.SCREEN_HEIGHT))
 gameBoard = GameBoard(screen)
 keyboard = Keyboard(game, gameBoard.get_player())
-background_image = game.image.load("background.png")
-lives_image = game.image.load("heart.png")
+background_image = game.image.load("images/background.png")
+lives_image = game.image.load("images/heart.png")
 font = game.font.Font('SansBold.ttf', 32)
 
 gameBoard.start_game()
 
+
 def update_player():
+    keyboard.checkPlayerBounderies()
     x = keyboard.getxchange()
     y = keyboard.getychange()
     gameBoard.player.set_position(gameBoard.player.get_position().getx() + x,
@@ -28,7 +30,7 @@ def show_score():
 def update_lives():
     num_of_lives = gameBoard.lives
     for i in range(num_of_lives):
-        screen.blit(lives_image, (Screen.SCREEN_WIDTH-70 - i*40, 20))
+        screen.blit(lives_image, (Screen.SCREEN_WIDTH - 70 - i * 40, 20))
 
 
 def update_monsters():

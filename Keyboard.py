@@ -17,9 +17,6 @@ class Keyboard:
         return self.y
 
     def manage_keyboard(self, event, game):
-
-        self.checkPlayerBounderies()
-
         if event.type == game.KEYDOWN:
             if event.key == game.K_LEFT:
                 self.x = -self.change
