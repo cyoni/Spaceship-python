@@ -56,7 +56,7 @@ class MonstersManager(Thread):
                     if self.game_board.player_score > 1:
                         choose_a_number = randrange(0, 500, 1)
                         if choose_a_number == 2:
-                            current_monster.fire("down")
+                            current_monster.fire("down", "player")
         except:
             print("exception 3425367")
 
@@ -64,7 +64,7 @@ class MonstersManager(Thread):
         if len(self.game_board.monsters) < self.total_monsters:
             x = randrange(50, Screen.SCREEN_WIDTH-100, 1)
             init_position = Point2D(x, 10)
-            velocity = 1
+            velocity = 1.2
             self.game_board.monsters.append(Monster(self.game_board, init_position, velocity))
 
     def remove_monster(self, index):

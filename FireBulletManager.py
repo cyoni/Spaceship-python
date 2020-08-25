@@ -46,10 +46,12 @@ class FireBulletManager(Thread):
                         break
                     else:
                         current_bullet.get_position().sety(y)
-                        self.check_if_bullet_hits_player(current_bullet, i)
-                        self.check_if_bullet_hits_monster(current_bullet, i)
+                        if current_bullet.get_target() == "player":
+                            self.check_if_bullet_hits_player(current_bullet, i)
+                        elif current_bullet.get_target() == "monster":
+                            self.check_if_bullet_hits_monster(current_bullet, i)
         except:
-            print("exeption 333")
+            print("exception 333")
 
     def check_if_bullet_hits_monster(self, current_bullet, bullet_index):
         for i in range(len(self.game_board.monsters)):
@@ -58,7 +60,7 @@ class FireBulletManager(Thread):
             if dis < 30:
                 del self.game_board.monsters[i]
                 self.game_board.increase_score()
-                # del self.game_board.bullets[bullet_index]
+                del self.game_board.bullets[bullet_index]
                 break
 
     def check_if_bullet_hits_player(self, current_bullet, bullet_index):

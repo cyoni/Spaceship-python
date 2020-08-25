@@ -1,4 +1,6 @@
 import pygame as game
+
+import LoadImages
 from Screen import Screen
 from GameBoard import GameBoard
 from Keyboard import Keyboard
@@ -7,8 +9,6 @@ game.init()
 screen = game.display.set_mode((Screen.SCREEN_WIDTH, Screen.SCREEN_HEIGHT))
 gameBoard = GameBoard(screen)
 keyboard = Keyboard(game, gameBoard.get_player())
-background_image = game.image.load("images/background.png")
-lives_image = game.image.load("images/heart.png")
 font = game.font.Font('SansBold.ttf', 32)
 
 gameBoard.start_game()
@@ -23,14 +23,14 @@ def update_player():
 
 
 def show_score():
-    score = font.render("Score : " + str(gameBoard.player_score), True, (255, 255, 255))
+    score = font.render("Score: " + str(gameBoard.player_score), True, (255, 255, 255))
     screen.blit(score, (10, 10))
 
 
 def update_lives():
     num_of_lives = gameBoard.lives
     for i in range(num_of_lives):
-        screen.blit(lives_image, (Screen.SCREEN_WIDTH - 70 - i * 40, 20))
+        screen.blit(LoadImages.lives_image, (Screen.SCREEN_WIDTH - 70 - i * 40, 20))
 
 
 def update_monsters():
@@ -55,7 +55,7 @@ while gameBoard.is_running():
             gameBoard.stop_game()
         keyboard.manage_keyboard(event, game)
 
-    screen.blit(background_image, [0, 0])  # has to be first
+    screen.blit(LoadImages.background_image, [0, 0])  # has to be first
     gameBoard.determine_level()
     show_score()
     update_player()

@@ -1,13 +1,21 @@
+import LoadImages
 from Point2D import Point2D
 from gameobject import GameObject
 
 
-class Bullet(GameObject):
+def choose_image(target):
+    if target == "player": 
+        return LoadImages.bullet_down_image
+    else:
+        return LoadImages.bullet_image
 
-    def __init__(self, position, vector):
-        super().__init__(position, 'images/bullet.png')
+
+class Bullet(GameObject):
+    def __init__(self, position, vector, target):
+        super().__init__(position, choose_image(target))
         self.position = position
         self.velocity = 5
+        self.target = target
         self.vector = vector
 
     def get_position(self):
@@ -21,3 +29,6 @@ class Bullet(GameObject):
 
     def get_vector(self):
         return self.vector
+
+    def get_target(self):
+        return self.target

@@ -1,11 +1,13 @@
 import pygame as game
 
+import LoadImages
+
 
 class GameObject:
 
     def __init__(self, position, picture):
         self.position = position
-        self.picture = game.image.load(picture)
+        self.picture = picture
 
     def get_position(self):
         return self.position
@@ -16,5 +18,3 @@ class GameObject:
     def set_position(self, x, y):
         self.position.x = x
         self.position.y = y
-
-
