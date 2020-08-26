@@ -4,7 +4,7 @@ from gameobject import GameObject
 
 
 def choose_image(target):
-    if target == "player": 
+    if target == "player":
         return LoadImages.bullet_down_image
     else:
         return LoadImages.bullet_image

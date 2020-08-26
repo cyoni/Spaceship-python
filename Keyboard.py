@@ -6,38 +6,30 @@ class Keyboard:
     def __init__(self, game, player):
         self.player = player
         self.game = game
-        self.x = 0
-        self.y = 0
         self.change = 3
 
-    def getxchange(self):
-        return self.x
+    def manage_keyboard(self):
 
-    def getychange(self):
-        return self.y
+        player_pos = self.player.get_position()
+        x = player_pos.getx()
+        y = player_pos.gety()
 
-    def manage_keyboard(self, event, game):
-        if event.type == game.KEYDOWN:
-            if event.key == game.K_LEFT:
-                self.x = -self.change
-            if event.key == game.K_RIGHT:
-                self.x = self.change
-            if event.key == game.K_UP:
-                self.y = -self.change
-            if event.key == game.K_DOWN:
-                self.y = self.change
-            if event.key == game.K_SPACE:
-                self.player.fire("up", "monster")
+        keys = self.game.key.get_pressed()
 
-        if event.type == game.KEYUP:
-            if event.key == game.K_DOWN or event.key == game.K_UP or event.key == game.K_RIGHT or event.key == game.K_LEFT:
-                self.x = 0
-                self.y = 0
+        if keys[self.game.K_LEFT]:
+            x = x - 3
+        if keys[self.game.K_RIGHT]:
+            x = x + 3
+        if keys[self.game.K_UP]:
+            y = y - 3
+        if keys[self.game.K_DOWN]:
+            y = y + 3
 
-    def checkPlayerBounderies(self):
-        playerx = self.player.get_position().getx()
-        playery = self.player.get_position().gety()
-        x_boundary = Screen.SCREEN_WIDTH - 50
+        self.player.set_position(x, y)
+        self.is_player_boundaries_ok(x, y)
+
+    def is_player_boundaries_ok(self, playerx, playery):
+        x_boundary = Screen.SCREEN_WIDTH - 70
         y_boundary = Screen.SCREEN_HEIGHT - 80
 
         if playerx <= 0:
@@ -48,3 +40,7 @@ class Keyboard:
             self.player.get_position().setx(x_boundary)
         elif playery >= y_boundary:
             self.player.get_position().sety(y_boundary)
+
+    def fire_when_space_key_pressed(self, event, game):
+        if event.type == game.KEYDOWN and event.key == game.K_SPACE:
+            self.player.fire("up", "monster")

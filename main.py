@@ -14,14 +14,6 @@ font = game.font.Font('SansBold.ttf', 32)
 gameBoard.start_game()
 
 
-def update_player():
-    keyboard.checkPlayerBounderies()
-    x = keyboard.getxchange()
-    y = keyboard.getychange()
-    gameBoard.player.set_position(gameBoard.player.get_position().getx() + x,
-                                  gameBoard.player.get_position().gety() + y)
-
-
 def show_score():
     score = font.render("Score: " + str(gameBoard.player_score), True, (255, 255, 255))
     screen.blit(score, (10, 10))
@@ -49,18 +41,27 @@ def update_bullets():
         screen.blit(current_bullet.get_picture(), (x, y))
 
 
+def update_player():
+    pos = gameBoard.player.get_position()
+    x = pos.getx()
+    y = pos.gety()
+    screen.blit(gameBoard.player.get_picture(),
+                (x, y))
+
+
 while gameBoard.is_running():
     for event in game.event.get():
         if event.type == game.QUIT:
             gameBoard.stop_game()
-        keyboard.manage_keyboard(event, game)
+        keyboard.fire_when_space_key_pressed(event, game)
 
+    keyboard.manage_keyboard()
     screen.blit(LoadImages.background_image, [0, 0])  # has to be first
     gameBoard.determine_level()
     show_score()
-    update_player()
     update_lives()
     update_monsters()
+    update_player()
     update_bullets()
     screen.blit(gameBoard.player.get_picture(), (gameBoard.player.position.getx(), gameBoard.player.position.gety()))
     game.display.update()

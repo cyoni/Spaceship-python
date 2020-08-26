@@ -7,5 +7,5 @@ from Screen import Screen
 class Player(ObjectThatFires):
 
     def __init__(self, gameboard):
-        ObjectThatFires.__init__(self, self, gameboard, Point2D(Screen.SCREEN_WIDTH / 2, Screen.SCREEN_HEIGHT),
+        ObjectThatFires.__init__(self, self, gameboard, Point2D(Screen.SCREEN_WIDTH / 2, Screen.SCREEN_HEIGHT - 100),
                                  LoadImages.player_image, 5)

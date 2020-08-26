@@ -51,7 +51,7 @@ class FireBulletManager(Thread):
                         elif current_bullet.get_target() == "monster":
                             self.check_if_bullet_hits_monster(current_bullet, i)
         except:
-            print("exception 333")
+            print("exception 333") # FIXME
 
     def check_if_bullet_hits_monster(self, current_bullet, bullet_index):
         for i in range(len(self.game_board.monsters)):
