@@ -25,6 +25,9 @@ def update_lives():
         screen.blit(LoadImages.lives_image, (Screen.SCREEN_WIDTH - 70 - i * 40, 20))
 
 
+
+
+
 def update_monsters():
     for i in range(len(gameBoard.monsters)):
         current_monster = gameBoard.monsters[i]
