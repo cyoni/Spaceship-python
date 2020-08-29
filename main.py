@@ -1,5 +1,4 @@
 import pygame as game
-
 import LoadImages
 from Screen import Screen
 from GameBoard import GameBoard
@@ -23,9 +22,6 @@ def update_lives():
     num_of_lives = gameBoard.lives
     for i in range(num_of_lives):
         screen.blit(LoadImages.lives_image, (Screen.SCREEN_WIDTH - 70 - i * 40, 20))
-
-
-
 
 
 def update_monsters():
