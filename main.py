@@ -9,9 +9,7 @@ screen = game.display.set_mode((Screen.SCREEN_WIDTH, Screen.SCREEN_HEIGHT))
 gameBoard = GameBoard(screen)
 keyboard = Keyboard(game, gameBoard.get_player())
 font = game.font.Font('SansBold.ttf', 32)
-
 gameBoard.start_game()
-
 
 def show_score():
     score = font.render("Score: " + str(gameBoard.player_score), True, (255, 255, 255))
