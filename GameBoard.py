@@ -1,12 +1,17 @@
+import LoadImages
 from FireBulletManager import FireBulletManager
+from GameAlgo import GameAlgo
 from MonstersManager import MonstersManager
 from Player import Player
+import pygame as game
+from Screen import Screen
 
 
 class GameBoard:
 
     def __init__(self, screen):
         self.player_score = 0
+        self.screen = screen
         self.bullets = []
         self.monsters = []
         self.running = False
@@ -20,6 +25,8 @@ class GameBoard:
         self.firing.start()
         self.monsters_manager.start()
         self.lives = 3
+        game_algo = GameAlgo(self)
+        game_algo.playing()
 
     def get_player(self):
         return self.player
@@ -56,3 +63,17 @@ class GameBoard:
 
     def increase_score(self):
         self.player_score = self.player_score + 1
+
+    def wait_for_user(self):
+        i = 0
+        while True:
+            for event in game.event.get():
+                if event.type == game.QUIT:
+                    break
+                if event.type == game.KEYDOWN and event.key == game.K_SPACE:
+                    self.start_game()
+            self.screen.blit(LoadImages.background_image, [0, 0])  # this has to be first
+            font = game.font.Font('SansBold.ttf', 32)
+            score = font.render("Press Space To Start", True, (255, 255, 255))
+            self.screen.blit(score, (Screen.SCREEN_WIDTH/2-150, Screen.SCREEN_HEIGHT/2))
+            game.display.update()

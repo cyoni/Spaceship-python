@@ -1,6 +1,5 @@
 from Bullet import Bullet
 from Point2D import Point2D
-from Screen import Screen
 from gameobject import GameObject
 import pygame as game
 
